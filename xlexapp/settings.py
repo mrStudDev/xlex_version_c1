@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'nova_base_dados_prod_xlex_c1',
         'USER': 'marcos_admin7',
         'PASSWORD': 'mar54T2!45_7',
-        'HOST': 'localhost',  # Ou o endereço IP do servidor do banco de dados, se estiver em um servidor diferente
+        'HOST': '34.42.61.119',  # Ou o endereço IP do servidor do banco de dados, se estiver em um servidor diferente
         'PORT': '5432',
     }
 }
