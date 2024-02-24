@@ -92,11 +92,11 @@ import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'base_dados_prod_xlex_c1'),
-        'USER': os.environ.get('DB_USER', 'marcos_adminmr7'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'mr1703xlexR7'),
-        'HOST': os.environ.get('DB_HOST', '10.128.0.3'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'NAME': 'nova_base_dados_prod_xlex_c1',
+        'USER': 'marcos_admin7',
+        'PASSWORD': 'mar54T2!45_7',
+        'HOST': 'localhost',  # Ou o endereço IP do servidor do banco de dados, se estiver em um servidor diferente
+        'PORT': '5432',
     }
 }
 
