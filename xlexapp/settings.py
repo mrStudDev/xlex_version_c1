@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-k7+rz*h138vhouesca#*7!dm@&&w6^-cqw$ui%+s0*v+txmwo4
 #DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.xlex.com.br', 'xlex.com.br']
+ALLOWED_HOSTS = ['www.xlex.com.br', 'xlex.com.br', '34.132.163.142']
 #ALLOWED_HOSTS = []
 
 
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_home',
 ]
+
+SITE = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
