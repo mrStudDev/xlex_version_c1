@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'nova_base_dados_prod_xlex_c1',
         'USER': 'marcos_admin7',
         'PASSWORD': 'mar54T2!45_7',
-        'HOST': '34.42.61.119',  
+        'HOST': '34.132.163.142',  
         'PORT': '5432',
     }
 }
