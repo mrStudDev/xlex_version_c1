@@ -26,10 +26,10 @@ SECRET_KEY = 'django-insecure-k7+rz*h138vhouesca#*7!dm@&&w6^-cqw$ui%+s0*v+txmwo4
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = False
-
+#DEBUG = True
 ALLOWED_HOSTS = ['www.xlex.com.br', 'xlex.com.br', '34.70.21.91']
 
-
+#ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
@@ -79,7 +79,18 @@ WSGI_APPLICATION = 'xlexapp.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-
+"""
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'base_dados_xlex_c1',
+        'USER': 'postgres',
+        'PASSWORD': 'mr1703',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -90,6 +101,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -127,12 +139,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Diretório para coleta de arquivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Certifique-se de que esta não é a mesma pasta que STATIC_ROOT
-#STATICFILES_DIRS = [
- #   os.path.join(BASE_DIR, 'static'), # Local onde você mantém arquivos estáticos que não estão vinculados a uma app específica
-#]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
