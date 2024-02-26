@@ -18,8 +18,9 @@
     <div class="container">
         {% for site in object_list %}
             <h1 class="site-title">{{ site.site_name }}</h1>
-            <p>{{ site.meta_description }}</p>
+            <p>{{ site.site_description }}</p>
         {% endfor %}
+        <h1>Mudanças</h1>
     </div>
     <div class="container">
         <hr>
