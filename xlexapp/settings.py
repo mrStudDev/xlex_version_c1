@@ -24,11 +24,11 @@ SECRET_KEY = 'django-insecure-k7+rz*h138vhouesca#*7!dm@&&w6^-cqw$ui%+s0*v+txmwo4
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.xlex.com.br', 'xlex.com.br', '34.132.163.142']
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.xlex.com.br', 'xlex.com.br', '34.70.21.91']
+
 
 
 # Application definition
@@ -78,26 +78,15 @@ WSGI_APPLICATION = 'xlexapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-    #'default': {
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': 'base_dados_xlex_c1',
-        #'USER': 'postgres',
-        #'PASSWORD': 'mr1703',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
 
-    #}
-#}
-import os
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nova_base_dados_prod_xlex_c1',
+        'NAME': 'dados_prod_xlex_c1',
         'USER': 'marcos_admin7',
-        'PASSWORD': 'mar54T2!45_7',
-        'HOST': '34.132.163.142',  
+        'PASSWORD': 'rmmr7117urpdfg56r',
+        'HOST': '34.70.21.91',  
         'PORT': '5432',
     }
 }
