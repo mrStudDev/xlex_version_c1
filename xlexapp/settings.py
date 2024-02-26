@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dados_prod_xlex_c1',
-        'USER': 'marcos_admin7',
+        'USER': 'postgres',
         'PASSWORD': 'rmmr7117urpdfg56r',
-        'HOST': '34.70.21.91',  
+        'HOST': 'localhost',  
         'PORT': '5432',
     }
 }
