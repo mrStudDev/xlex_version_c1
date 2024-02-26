@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'xlexapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dados_prod_xlex_c1',
+        'NAME': 'prod_xlex_c1',
         'USER': 'postgres',
         'PASSWORD': 'rmmr7117urpdfg56r',
         'HOST': 'localhost',  
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 
