@@ -130,9 +130,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Diretório para coleta de arquivos estáticos
 
 # Certifique-se de que esta não é a mesma pasta que STATIC_ROOT
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), # Local onde você mantém arquivos estáticos que não estão vinculados a uma app específica
-]
+#STATICFILES_DIRS = [
+ #   os.path.join(BASE_DIR, 'static'), # Local onde você mantém arquivos estáticos que não estão vinculados a uma app específica
+#]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
