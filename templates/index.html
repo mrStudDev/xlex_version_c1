@@ -20,11 +20,12 @@
             <h1 class="site-title">{{ site.site_name }}</h1>
             <p>{{ site.site_description }}</p>
         {% endfor %}
-        <h1>Mudanças</h1>
+        <h1>Mudanças Ck Remove as</h1>
+        
     </div>
     <div class="container">
         <hr>
-    <a href="#">Articles</a>      
+    <a href="{% url 'app_articles:articles-list' %}">Articles</a>
     </div>
 
 
