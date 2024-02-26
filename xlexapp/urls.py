@@ -23,6 +23,8 @@ from django.contrib.auth import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app_home.urls')),
+    path('articles/', include('app_articles.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block 'article_single' %}
+<h1>{{object.title}}</h1>
+<img src="{{ object.img_destaque.url }}" class="destaque-image img-fluid rounded-start" alt="{{object.title}}">
+<p>{{object.content | safe}}</p>
+{% endblock 'article_single' %}

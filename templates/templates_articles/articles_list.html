@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block 'articles_list' %}
+
+{% for article in object_list %}
+
+    {% if article.slug %}
+        <h1>{{article.title}}</h1>
+        <img src="{{ article.img_destaque.url }}" class="destaque-image img-fluid rounded-start" alt="{{object.title}}">
+        <a href="{% url 'app_articles:article-single' article.slug %}" class="btn btn-dark btn-sm">Leia mais</a>
+    {% endif %}
+
+{% endfor %}
+
+{% endblock 'articles_list' %}
