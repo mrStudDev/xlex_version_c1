@@ -6,7 +6,11 @@
 
     <div class="container mt-5">
         <h5>Artigos:</h5>
+        <div>
+            <p>Artigos Publicados: <strong>{{ publicacoes_count }}</strong> </p>
+        </div>        
         <hr>
+
         <div class="row">
 
             {% for article in object_list %}
@@ -34,7 +38,7 @@
                             </p>
 
                             <p class="card-text">
-                                {{ article.meta_description | slice:":77" }}
+                                {{ article.meta_description | slice:":107" }}
                             </p>
 
                             {% if article.slug %}

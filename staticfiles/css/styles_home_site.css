@@ -64,6 +64,16 @@ p {
 /* End Coração */
 
 
+/* Java Texto Phrase  */
+#typing-effect {
+    border-right: 2px solid;
+    font-family: 'Merriweather', serif;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* End Java Texto Phrase  */
+
 /* Cards Groups */
 
 /* Configs Generics */
@@ -155,7 +165,9 @@ p {
     padding: 5px;
   }
 /* End Footer items*/
-  /* MEDIAS */
+
+
+/* MEDIAS */
 
   /* Pequenos dispositivos (smartphones grandes) */
   @media (min-width: 412px) {
@@ -166,6 +178,7 @@ p {
         font-size: 1.8rem;
     }
   }
+
   @media (min-width: 540px) {
     .welcome-container {
         padding: 40px;
@@ -174,13 +187,17 @@ p {
         font-size: 2.2rem;
     }
     #site-description{
-        font-size: 14px;
+        font-size: 17px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 16px;
     }
+    .description-footer {
+        font-size: 14px;
+      }
   }
+
   @media (min-width: 768px) {
     .welcome-container {
         padding: 50px;
@@ -189,13 +206,17 @@ p {
         font-size: 2.8rem;
     }
     #site-description{
-        font-size: 14px;
+        font-size: 17px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 17px;
     }
+    .description-footer {
+        font-size: 15px;
+      }
   }
+
   @media (min-width: 992px) {
     .welcome-container {
         padding: 50px;
@@ -204,14 +225,18 @@ p {
         font-size: 3.0rem;
     }
     #site-description{
-        font-size: 15px;
+        font-size: 20px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 17px;
     }
+    .description-footer {
+        font-size: 17px;
+      }
 
   }
+
   @media (min-width: 1280px) {
     .welcome-container {
         padding: 50px;
@@ -220,13 +245,17 @@ p {
         font-size: 3.8rem;
     }
     #site-description{
-        font-size: 15px;
+        font-size: 22px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 18px;
     }
+    .description-footer {
+        font-size: 20px;
+      }
   }
+
   @media (min-width: 1440px) {
     .welcome-container {
         padding: 50px;
@@ -235,12 +264,15 @@ p {
         font-size: 4.2rem;
     }
     #site-description{
-        font-size: 17px;
+        font-size: 22px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 19px;
     }
+    .description-footer {
+        font-size: 20px;
+      }
   }
   @media (min-width: 1880px) {
     .welcome-container {
@@ -250,25 +282,31 @@ p {
         font-size: 4.5rem;
     }
     #site-description{
-        font-size: 15px;
+        font-size: 22px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 20px;
     }
+    .description-footer {
+        font-size: 22px;
+      }
   }
   @media (min-width: 2560px) {
     .welcome-container {
         padding: 70px;
     }
     .site-title {
-        font-size: 5.2rem;
+        font-size: 7.0rem;
     }
     #site-description{
-        font-size: 19px;
+        font-size: 27px;
         letter-spacing: 0.1em;
     }
     #typing-effect {
         font-size: 23px;
     }
+    .description-footer {
+        font-size: 27px;
+      }
   }

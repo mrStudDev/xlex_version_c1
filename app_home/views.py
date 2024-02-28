@@ -29,3 +29,8 @@ class XlexHomeView(ListView):
         context["hide_navbar"] = True
         
         return context
+
+# Páginas do Site (sobre, contato, paginas de listas, etc)
+
+def jurisprudencias_list(request):
+    return render(request, 'jurisprudencias.html', {'hide_sidebar':True})

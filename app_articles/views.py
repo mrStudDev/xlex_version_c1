@@ -38,6 +38,7 @@ class ArticlesListView(ListView):
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
+        context["publicacoes_count"] = ArticlesModel.objects.all().count()
         context["hide_sidebar"] = True
         return context
 
@@ -46,8 +47,8 @@ class ArticleSingleView(DetailView):
     model = ArticlesModel
     template_name = 'templates_articles/article_single.html'
     slug_field = 'slug'
-    context_object_name = 'articles'
     reverse_lazy = reverse_lazy('article-delete-post')
+    context_object_name = 'articles'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('app_home.urls')),
     path('articles/', include('app_articles.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('jurisprudencia-stj/', include('app_juris_stj.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

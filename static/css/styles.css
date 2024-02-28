@@ -30,17 +30,17 @@ p {
     color: #1d8aff;
 }
 .a-link-side {
-  font-size: 15px;
-  color: #737171;
-  text-align: center;
-  text-decoration: none;
+    font-size: 15px;
+    color: #737171;
+    text-align: center;
+    text-decoration: none;
 }
 .a-link-side:hover {
-  color:#062dec;
-  text-decoration: none;
+    color:#062dec;
+    text-decoration: none;
 }
 .escolha {
-  font-size: 13px;
+    font-size: 13px;
 }
 
 /* Text - highlighted*/
@@ -60,7 +60,7 @@ p {
 }
 /* End Coração */
 
-/* Configs Generics */
+/* Cards Configs */
 #card-link:hover {
     transform: translateY(-5px); 
     box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
@@ -84,13 +84,13 @@ p {
     font-size: 14px;
     margin-top: 2px;
 }
-/* End Configs Generics */
+
 .card-a-category {
     font-family: 'Merriweather', serif;
     font-size: 12px;
     text-decoration: none;
     color: #737373;
-  }
+}
 .card-a-category:hover{
     color:#062dec;
 }
@@ -102,8 +102,77 @@ p {
     width: 100%; 
     height: 200px; 
     object-fit: cover; /* Mantém a proporção das imagens */
-  }
+}
+
 /* End Cards */
+
+/* App Juris STJ */
+  /* EMENTAS SÙMULAS E JURIS */
+.ementa {
+    color: #6c6e6f; /* Cor do texto da ementa (preto) */
+    font-size: 15px;
+    margin-top: 10px; /* Espaçamento acima da ementa */
+    text-align: justify;
+}
+   /*Containes Juris STJ Singular */
+.content-container {
+    max-width: 900px; /* container médio */
+    margin: 0 auto; /* centraliza o container */
+    padding: 20px; /* um pouco de espaço interno */
+}
+  
+.enunciado-pc {
+  text-align: justify;
+}
+  
+.info-ementa h3 {
+    color: #333; /* cor do título */
+    border-bottom: 2px solid #666; /* linha abaixo do título */
+    margin-bottom: 10px; /* espaço abaixo do título */
+    padding-bottom: 10px; /* espaço interno abaixo do título */
+}
+  
+.info-ementa {
+    margin-bottom: 20px; /* espaço abaixo do bloco */
+}
+  
+.info-final p {
+    margin: 10px 0; /* espaço acima e abaixo do parágrafo */
+}
+  /* App Juris STJ Cards */
+
+.card-title-juris {
+    font-family: Georgia, serif;
+    color: #333;
+}
+.card-a-title {
+    font-size: 19px;
+    color: #000000;
+    text-decoration: solid;
+}
+  .card-a-title:hover {
+    color: rgb(4, 0, 255);
+}
+  
+.small-info, .ementa, p {
+    color: #666;
+}
+  
+.hr {
+    border-top: 1px solid #eee;
+}
+  
+.ementa {
+    text-align: justify;
+}
+  
+.p-link {
+    text-align: right;
+}
+  
+.small-info strong {
+    color: #333;
+}
 
 /* Paginação */
 .pagination {
@@ -137,66 +206,119 @@ p {
     color: white;
     border-color: #1d8aff;
 }
-/* End Paginação */
+
+  /* End Paginação */
 
 
-
-
-/* FOOTER */
-/* Footer items*/
+  /* Footer items*/
 .footer-container {
     width: 100%;
-    height: 100vh; /* Altura total da tela */
+    height: 100vh;
     position: relative;
-    margin: 0 auto; /* Centraliza o container horizontalmente */
-    display: flex; /* Usa Flexbox */
-    flex-direction: column; /* Organiza os itens em uma coluna */
-    justify-content: space-around; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    text-align: center; /* Alinha o texto ao centro */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center; 
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background: linear-gradient(to bottom right, #000a19, #000000);
     font-family: 'Merriweather', serif;
     color: white;
     padding: 40px;
-  }
-  .footer-title {
+}
+.footer-title {
     font-size: 80px;
     color: #ffffff;
-    letter-spacing: 0.2em;
-  }
-  .footer-columns {
+  letter-spacing: 0.2em;
+}
+.footer-columns {
     display: flex;
     justify-content: space-around;
     width: 100%;
-
-  }
-  .footer-column {
+}
+.footer-column {
     flex: 1;
     margin: 0 10px;
-  }
-  .footer-column h3 {
+}
+.footer-column h3 {
     color: #ffffff;
-  
-  }
-  .footer-column ul {
+
+}
+.footer-column ul {
     list-style: none;
     padding: 0;
-  }
-  .footer-column ul li a {
+}
+.footer-column ul li a {
     color: #a8d0e6;
     text-decoration: none;
     transition: color 0.3s ease;
-  }
-  .footer-column ul li a:hover {
-    color: #f1f1f1;
-  }
-  .footer-brand-info {
+}
+.footer-column ul li a:hover {
+  color: #f1f1f1;
+}
+.footer-brand-info {
     color: #ffffff;
     font-size: 12px;
     bottom: 0;
     width: 100%;
     text-align: center;
     padding: 5px;
-  }
+}
+.description-footer {
+    font-size: 12px;
+}
 /* End Footer items*/
+
+
+/* MEDIAS */
+
+/* Pequenos dispositivos (smartphones grandes) */
+@media (min-width: 412px) {
+  .description-footer {
+      font-size: 13px;
+  }
+}
+
+@media (min-width: 540px) {
+  .description-footer {
+      font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+  .description-footer {
+      font-size: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+  .description-footer {
+      font-size: 17px;
+    }
+
+}
+
+@media (min-width: 1280px) {
+  .description-footer {
+      font-size: 20px;
+    }
+}
+
+@media (min-width: 1440px) {
+  .description-footer {
+      font-size: 20px;
+    }
+}
+
+@media (min-width: 1880px) {
+  .description-footer {
+      font-size: 22px;
+    }
+}
+
+@media (min-width: 2560px) {
+  .description-footer {
+      font-size: 27px;
+    }
+}

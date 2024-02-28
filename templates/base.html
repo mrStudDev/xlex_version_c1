@@ -61,7 +61,7 @@ License: MIT License
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">STF_data</a></li>
-                            <li><a class="dropdown-item" href="#">Upload_stj_data</a></li>
+                            <li><a class="dropdown-item" href="{% url 'app_juris_stj:juris-stj-upload' %}">Upload_stj_data</a></li>
                             <li><a class="dropdown-item" href="#"></a></li>
                             <li><a class="dropdown-item" href="#"></a></li>                                    
                         </ul>
@@ -122,7 +122,7 @@ License: MIT License
                       Jurisprudências
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Superior Trib. Justiça</a></li>
+                      <li><a class="dropdown-item" href="{% url 'app_juris_stj:juris-stj-list' %}">Superior Trib. Justiça</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -203,7 +203,6 @@ License: MIT License
     {% block 'article_delete' %}
 
     {% endblock 'article_delete' %}
-
 
     <!-- App Questions -->
     {% block 'questions_list' %}
@@ -291,6 +290,13 @@ License: MIT License
     {% block 'sumula_delete' %}
 
     {% endblock 'sumula_delete' %}
+
+    <!-- Jurisprudências Página Central -->
+    {% block 'jurisprudencias' %}
+    
+    {% endblock 'jurisprudencias' %}
+    <!-- Jurisprudências Página Central -->
+
 
     <!-- App Jurisprudência STJ -->
     {% block 'juris_stj_list' %}
@@ -609,7 +615,7 @@ License: MIT License
       {% if views_count %}
       <p>Views: {{ views_count }}</p>
       {% endif %}
-      <P style="color: white;">
+      <P class="description-footer" style="color: white;">
           Agradecemos sua visita e o interesse pelo nosso conteúdo. Convidamos você a explorar outras 
           seções do site. Faça um tour!
       </P>
@@ -671,7 +677,7 @@ License: MIT License
   <!-- -->
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -680,6 +686,17 @@ License: MIT License
     crossorigin="anonymous"></script>
 
 <script src="{% static 'js/breadcrumbs.js' %}"></script>
+<script src="{% static 'js/copy_ementa.js' %}"></script>
+<script src="{% static 'js/copy_enunciado.js' %}"></script>
+<script src="{% static 'js/create_answer.js' %}"></script>
+
+<script src="{% static 'js/revelar_answer_question.js' %}"></script>
+<script src="{% static 'js/sidebar_show.js' %}"></script>
+
+
+
+
+
 
 
 </body>
