@@ -39,7 +39,7 @@ class STJjurisprudenciaModel(models.Model):
     meta_description = models.CharField(max_length=1000, blank=True, null=True)
     title = models.CharField(max_length=255)
     keyword = models.CharField(max_length=200, blank=True, null=True, default="Campo s/ Key") 
-    slug = models.SlugField(max_length=255, blank=True, unique=True)
+    slug = models.SlugField(max_length=255, blank=True)
     views = models.IntegerField(default=0)
 
 
