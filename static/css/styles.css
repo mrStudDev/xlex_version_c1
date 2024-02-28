@@ -1,8 +1,202 @@
+html {
+    height: 100%;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 body {
-    padding: 0;
-    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    overflow-x: hidden;
 }
-p {
 
-    color:rgb(0, 68, 255);
+p {
+    font-size: 0.9rem;
+    font-family: 'Merriweather', serif;
 }
+.a-link {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+}
+.a-link:hover {
+    color: #1d8aff;
+}
+.a-link-side {
+  font-size: 15px;
+  color: #737171;
+  text-align: center;
+  text-decoration: none;
+}
+.a-link-side:hover {
+  color:#062dec;
+  text-decoration: none;
+}
+.escolha {
+  font-size: 13px;
+}
+
+/* Text - highlighted*/
+.highlighted-text, #highlighted-text, #titulo-xlex {
+    background-image: linear-gradient(to right, #3f74a6, #c9f5a8, #f69d3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* End Text - highlighted*/
+
+/* Coração */
+.coracao {
+    display: inline-block; /* Para permitir que a largura e a altura sejam aplicadas */
+    background: linear-gradient(to right, #3f74a6, #c9f5a8, #f69d3c);
+    -webkit-background-clip: text; /* Necessário para preencher apenas o texto com a gradiente */
+    color: transparent; /* Torna o texto transparente, então a gradiente se mostra */
+}
+/* End Coração */
+
+/* Configs Generics */
+#card-link:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+}
+.card-body {
+    padding: 20px; 
+}
+.card-title a {
+    font-family: 'Merriweather', serif;
+    color: #090909; 
+    text-decoration: none;
+    text-decoration: solid;
+}
+.card-title a:hover {
+    text-decoration: none;
+    color:rgb(85, 85, 251);
+}
+.card-text {
+    font-family: 'Merriweather', serif;
+    color: #555;
+    font-size: 14px;
+    margin-top: 2px;
+}
+/* End Configs Generics */
+.card-a-category {
+    font-family: 'Merriweather', serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: #737373;
+  }
+.card-a-category:hover{
+    color:#062dec;
+}
+#card-link {
+    width: 100%; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+.card-img-top {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; /* Mantém a proporção das imagens */
+  }
+/* End Cards */
+
+/* Paginação */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination .step-links {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .step-links a,
+.pagination .step-links span {
+    color: #333;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.pagination .step-links a:hover {
+    background-color: #e9e9e9;
+}
+.pagination .step-links span.current {
+    background-color: #2e2e2f;
+    color: white;
+    border-color: #1d8aff;
+}
+/* End Paginação */
+
+
+
+
+/* FOOTER */
+/* Footer items*/
+.footer-container {
+    width: 100%;
+    height: 100vh; /* Altura total da tela */
+    position: relative;
+    margin: 0 auto; /* Centraliza o container horizontalmente */
+    display: flex; /* Usa Flexbox */
+    flex-direction: column; /* Organiza os itens em uma coluna */
+    justify-content: space-around; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center; /* Alinha o texto ao centro */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: linear-gradient(to bottom right, #000a19, #000000);
+    font-family: 'Merriweather', serif;
+    color: white;
+    padding: 40px;
+  }
+  .footer-title {
+    font-size: 80px;
+    color: #ffffff;
+    letter-spacing: 0.2em;
+  }
+  .footer-columns {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+  }
+  .footer-column {
+    flex: 1;
+    margin: 0 10px;
+  }
+  .footer-column h3 {
+    color: #ffffff;
+  
+  }
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-column ul li a {
+    color: #a8d0e6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-column ul li a:hover {
+    color: #f1f1f1;
+  }
+  .footer-brand-info {
+    color: #ffffff;
+    font-size: 12px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+  }
+/* End Footer items*/
