@@ -3,7 +3,7 @@ import django
 import json
 from datetime import datetime
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "xlex_app.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "xlexapp.settings")
 django.setup()
 
 from app_juris_stj.models import STJjurisprudenciaModel
