@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'app_home',
     'app_articles',
     'app_juris_stj',
+    'app_searchs',
+    'app_sumulas',
 ]
 
 SITE = 1
@@ -87,7 +89,7 @@ WSGI_APPLICATION = 'xlexapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'base_dados_xlex_c1',
+        'NAME': 'xlex_db_local_version_c1',
         'USER': 'postgres',
         'PASSWORD': 'mr1703',
         'HOST': 'localhost',

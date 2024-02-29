@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
         'searchs',
         'sumula',
         'juris-single',
-        'article-single',
         'categorias-social',
         'esfera',
         'categories',

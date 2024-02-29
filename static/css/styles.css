@@ -60,6 +60,25 @@ p {
 }
 /* End Coração */
 
+/* imagens do texto rico CKEditor */
+.image-sm-content-ck {
+    display: block;
+    width: 100%; 
+    max-width: 300px; 
+    margin: auto; 
+}
+  
+.image-md-content-ck {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+}
+  
+.image-lg-content-ck {
+    width: 100%;
+}
+  
 /* Cards Configs */
 #card-link:hover {
     transform: translateY(-5px); 
@@ -103,6 +122,31 @@ p {
     height: 200px; 
     object-fit: cover; /* Mantém a proporção das imagens */
 }
+#bolinha-educacao::before {
+    content: ""; /* Isso é necessário para que o pseudo-elemento seja exibido */
+    width: 10px; 
+    height: 10px;
+    border-radius: 50%;
+    background-color:#7a7a7a;
+    position: absolute; 
+    top: 15px;
+    left: 15px;
+}
+.card-code {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #a9a9a9;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.card-date {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+    color: #777;
+}
+
 
 /* End Cards */
 

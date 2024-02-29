@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block 'title' %} {{jurisprucencia_STJ.title}} {% endblock 'title' %}
 
 {% block 'juris_stj_single' %}
 
@@ -58,7 +59,7 @@
         <small style="color: rgb(154, 152, 152);">Xlex</small>
         <br>
         <a class="btn bg-dark text-light btn-sm" href="{% url 'app_juris_stj:juris-stj-list' %}">Voltar para lista</a>
-        <a class="btn bg-dark text-light btn-sm" href="#">Formulário de busca</a>        
+        <a class="btn bg-dark text-light btn-sm" href="{% url 'app_searchs:advanced-searchs-view' %}">Formulário de busca</a>        
     </center>
     <br>
     <span>

@@ -15,6 +15,7 @@ class STJjurisprudenciaView(ListView):
     template_name = 'templates_jurisprudencias/templates_juris_stj/juris_stj_list.html'
     ordering = ['-dataPublicacao']
     paginate_by = 10
+    context_object_name = 'jurisprucencia_STJ'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -25,7 +26,8 @@ class STJjurisprudenciaView(ListView):
 class STJjurisprudenciaSingularView(DetailView):
     model = STJjurisprudenciaModel
     template_name = 'templates_jurisprudencias/templates_juris_stj/juris_stj_single.html'
-
+    context_object_name = 'jurisprucencia_STJ'
+    
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["hide_sidebar"] = True

@@ -50,7 +50,7 @@ License: MIT License
                             <li><a class="dropdown-item" href="{% url 'app_articles:article-create-post' %}">Add Articles</a></li>
                             <li><a class="dropdown-item" href="#">Add Questões</a></li>
                             <li><a class="dropdown-item" href="#">Add Casos</a></li>
-                            <li><a class="dropdown-item" href="#">Add Súmulas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'app_sumulas:sumula-create-post' %}">Add Súmulas</a></li>
                             <li><a class="dropdown-item" href="#">Add modelo</a></li>
                             <li><a class="dropdown-item" href="#">Add Blog-Social</a></li>
                         </ul>
@@ -106,7 +106,7 @@ License: MIT License
                     <a class="nav-link" href="#">Casos Concretos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Súmulas</a>
+                    <a class="nav-link" href="{% url 'app_sumulas:sumulas-list' %}">Súmulas</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Modelos</a>
@@ -291,6 +291,13 @@ License: MIT License
 
     {% endblock 'sumula_delete' %}
 
+    {% block 'sumulas_tribName' %}
+
+    {% endblock 'sumulas_tribName' %}
+
+    {% block 'sumulas_siglasTrib' %}
+
+    {% endblock 'sumulas_siglasTrib' %}
     <!-- Jurisprudências Página Central -->
     {% block 'jurisprudencias' %}
     

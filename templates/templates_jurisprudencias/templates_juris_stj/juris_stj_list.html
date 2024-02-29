@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
+{% block 'title' %} Jurisprudência STJ {% endblock 'title' %}
 
 {% block 'juris_stj_list' %}
 <div class="container mt-5">
     <center>
         <small>Você pode fazer uma perguisa <strong>avançada</strong>, clicando no botão abaixo!</small>
         <br><br>
-        <a class="btn bg-dark text-light btn-sm" href="#">Ir para busca avancada</a>
+        <a class="btn bg-dark text-light btn-sm" href="{% url 'app_searchs:advanced-searchs-view' %}">Ir para busca avancada</a>
                       
     </center><br>
     <h5>Jurisprudências do Superior Tribunal de Justiça - STJ</h5>
