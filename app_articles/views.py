@@ -9,6 +9,9 @@ from typing import Any
 from django.urls import reverse
 from django.utils.text import slugify
 from django.db.models import Sum
+from django.http import HttpRequest, HttpResponse
+from django.utils import timezone
+from app_manager .models import PageView
 
 from django.views.generic import (
     ListView,
@@ -29,11 +32,12 @@ from .forms import (
     UpdateArticleForm,
     )
 
+
 class ArticlesListView(ListView):
     model = ArticlesModel
     template_name = 'templates_articles/articles_list.html'
     ordering = ['-date_created']
-    paginate_by = 6
+    paginate_by = 12
     context_object_name = 'articles'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
@@ -41,6 +45,18 @@ class ArticlesListView(ListView):
         context["publicacoes_count"] = ArticlesModel.objects.all().count()
         context["hide_sidebar"] = True
         return context
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        page, created = PageView.objects.get_or_create(
+            page_name="Lista de Artigos",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+
+        return super().get(request, *args, **kwargs)
 
 
 class ArticleSingleView(DetailView):
@@ -50,10 +66,20 @@ class ArticleSingleView(DetailView):
     reverse_lazy = reverse_lazy('article-delete-post')
     context_object_name = 'articles'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         self.object = self.get_object()
-        # Contagem das Visualizações
-        self.object.update_views() 
+        article_name = self.object.title
+        self.object.update_views()
+        
+        page, created = PageView.objects.get_or_create(
+            page_name=f"Article Post: {article_name}",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 
@@ -66,53 +92,77 @@ class ArticleSingleView(DetailView):
         context['current_app'] = 'app_articles'
         return context
 
-
 class CategoryListView(ListView):
-    model = CategoryArticlesModel
+    model = ArticlesModel  
     template_name = 'templates_articles/categories.html'
     context_object_name = 'articles'
-    
+
     def get_queryset(self):
-        category_slug = self.kwargs['category_slug']
-        category = CategoryArticlesModel.objects.get(slug=category_slug)
-        return ArticlesModel.objects.filter(category=category)
+        self.category = CategoryArticlesModel.objects.get(slug=self.kwargs['category_slug'])
+        return ArticlesModel.objects.filter(category=self.category)
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        category_slug = self.kwargs['category_slug']
-        context['category'] = CategoryArticlesModel.objects.get(slug=category_slug)
-        context['categories'] = CategoryArticlesModel.objects.all()
-        context['tagsx'] = TagArticlesModel.objects.all()
-        context['current_app'] = 'app_articles'
+        context.update({
+            'category': self.category,
+            'categories': CategoryArticlesModel.objects.all(),
+            'tagsx': TagArticlesModel.objects.all(),
+            'current_app': 'app_articles',
+        })
         return context
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        page, created = PageView.objects.get_or_create(
+            page_name=f"article: Categorias - {self.kwargs.get('category_slug', 'Unknown')}",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+
+        return super().get(request, *args, **kwargs)
 
 
 class TagArticlesView(ListView):
-    model = TagArticlesModel
+    model = ArticlesModel
     template_name = 'templates_articles/article_tags.html'
     context_object_name = 'articles'
 
     def get_queryset(self):
-        tagArticle_slug = self.kwargs['tagArticle_slug']
-        tags = get_object_or_404(TagArticlesModel, slug=tagArticle_slug)
-        return ArticlesModel.objects.filter(tags=tags)
+        self.tag = get_object_or_404(TagArticlesModel, slug=self.kwargs['tagArticle_slug'])
+        return ArticlesModel.objects.filter(tags=self.tag)
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        tagArticle_slug = self.kwargs['tagArticle_slug']
-        context['tags'] = get_object_or_404(TagArticlesModel, slug=tagArticle_slug)
-        context['categories'] = CategoryArticlesModel.objects.all()
-        context ['tagsx'] = TagArticlesModel.objects.all()
-        context['current_app'] = 'app_articles'
+        context.update({
+            'tag': self.tag,
+            'categories': CategoryArticlesModel.objects.all(),
+            'tagsx': TagArticlesModel.objects.all(),
+            'current_app': 'app_articles',
+        })
         return context
 
-# Classes Create; Update Articles
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        page, created = PageView.objects.get_or_create(
+            page_name=f"Article: Tags - {self.kwargs.get('tagArticle_slug', 'Unknown')}",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+
+        return super().get(request, *args, **kwargs)
+
+
+# Classes = Create, Update e delete Articles
 
 class CreateArticleView(CreateView):
     model = ArticlesModel
     template_name = 'templates_articles/article_create_post.html'
     form_class = CreateArticleForm
-    success_url = reverse_lazy('app_articles:article-single')  # Ajuste conforme a URL de sucesso desejada
+    success_url = reverse_lazy('app_articles:article-single') 
 
     def form_valid(self, form):
         form.instance.slug = slugify(form.instance.title)

@@ -1,3 +1,4 @@
+
 document.getElementById('toggleSidebar').addEventListener('click', function () {
     var sidebar = document.getElementById('sidebar-container');
     var mainContent = document.getElementById('main-content');

@@ -28,6 +28,11 @@ urlpatterns = [
     path('jurisprudencia-stj/', include('app_juris_stj.urls')),
     path('searchs/', include('app_searchs.urls')),
     path('sumulas/', include('app_sumulas.urls')),
+    path('principios/', include('app_principios.urls')),
+    path('casos/', include('app_casos.urls')),
+    path('manager/', include('app_manager.urls')),
+    path('questions/', include('app_questions.urls')),
+    path('blog-social/', include('app_blog_social.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

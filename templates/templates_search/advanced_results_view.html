@@ -2,7 +2,7 @@
 
 {% block 'advanced_results' %}
 <div class="container mt-5">
-    <h1>Resultados da busca</h1>
+    <h1 id="title-post-h1">Resultados da busca</h1>
     <p>Jurisprudências do Superior Tribunal de Justiça - STJ</p>
     <small>Xlex | Jurisprudências</small>
     <br>
@@ -16,7 +16,7 @@
     {% else %}
         <div class="results-header d-flex justify-content-between align-items-center">
             <a class="btn bg-dark text-light" style="color:green" href="{% url 'app_searchs:advanced-searchs-view' %}">Vorltar para o formulário</a>
-            <span style="color:green">{{ results|length }} resultados por página</span>
+            <span style="color:green">{{ results|length }} resultados por pág. 1/{{ results.paginator.num_pages }} pág.</span>
         </div>
         <div class="mt-4">
             <ul class="list-group">
@@ -27,10 +27,10 @@
                             <a class="card-a-title" href="{{ result.get_absolute_url }}">{{ result.descricaoClasse | slice:"150" }}</a>
                         </h5>
                         <div class="juris-info">
-                            <small class="small-info"><strong>Id_herdado:</strong> {{juris_stj.id_herdadoSTJ}}</small>
-                            - <small class="small-info"><strong>Número registro:</strong> {{juris_stj.numeroRegistro }}</small>
-                            - <small class="small-info"><strong>Sigla de Classe:</strong> {{juris_stj.siglaClasse }}</small>
-                            - <small class="small-info"><strong>Número Processo:</strong> {{juris_stj.numeroProcesso }}</small>
+                            <small class="small-info"><strong>Id_herdado:</strong> {{result.id_herdadoSTJ}}</small>
+                            - <small class="small-info"><strong>Número registro:</strong> {{result.numeroRegistro }}</small>
+                            - <small class="small-info"><strong>Sigla de Classe:</strong> {{result.siglaClasse }}</small>
+                            - <small class="small-info"><strong>Número Processo:</strong> {{result.numeroProcesso }}</small>
                         </div>
                         <hr>
                         <div>
@@ -45,9 +45,8 @@
                         </div>
                     </div>
 
-
-
                 {% endfor %}
+
                 <br>
                 <!-- Links de paginação -->
                 <div class="pagination">

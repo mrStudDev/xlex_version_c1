@@ -9,7 +9,10 @@
         <a class="btn bg-dark text-light btn-sm" href="{% url 'app_searchs:sumula-searchs-view' %}">Ir para busca avancada</a>
                       
     </center><br>  
-    <h5>Súmulas:</h5>
+    <h5>Súmulas</h5>
+    <div>
+        <p>Súmulas Publicadas: <strong>{{ publicacoes_count }}</strong> </p>
+    </div>
     <hr>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         <!-- Card Súmulas-->

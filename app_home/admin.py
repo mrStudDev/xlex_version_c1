@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import HomeSite, TagSiteModel
-#, ContactMessagesModel
+from .models import HomeSite, TagSiteModel, ContactMessagesModel
 
 
 class SiteAdmin(admin.ModelAdmin):
@@ -17,10 +16,10 @@ class TagSiteAdmin(admin.ModelAdmin):
         model = TagSiteModel
     
     
-#class ContactAdmin(admin.ModelAdmin):
-    #class Meta:
-        #model = ContactMessagesModel
+class ContactAdmin(admin.ModelAdmin):
+    class Meta:
+        model = ContactMessagesModel
         
 admin.site.register(HomeSite, SiteAdmin)
 admin.site.register(TagSiteModel)
-#admin.site.register(ContactMessagesModel, ContactAdmin)
+admin.site.register(ContactMessagesModel, ContactAdmin)

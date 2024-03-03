@@ -5,6 +5,9 @@ from django.urls import reverse
 from django.db.models import Q
 from typing import Any
 from django.utils.text import slugify
+from django.http import HttpRequest, HttpResponse
+from django.utils import timezone
+from app_manager .models import PageView
 
 from .models import (
     SumulaModel,
@@ -34,8 +37,21 @@ class SumulasListView(ListView):
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
+        context["publicacoes_count"] = SumulaModel.objects.all().count()
         context["hide_sidebar"] = True
         return context
+
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        page, created = PageView.objects.get_or_create(
+            page_name="Lista de Súmulas",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+
+        return super().get(request, *args, **kwargs)
 
 class SumulaSingularView(DetailView):
     model = SumulaModel
@@ -46,7 +62,18 @@ class SumulaSingularView(DetailView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
+        sumula_name = self.object.title
         self.object.update_views()
+        
+        page, created = PageView.objects.get_or_create(
+            page_name=f"Súmula Post: {sumula_name}",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+            
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 
@@ -63,16 +90,17 @@ class TribNameSumulaView(ListView):
     context_object_name = 'sumulas'
     
     def get_queryset(self):
-        tribNameSum_slug = self.kwargs['tribNameSum_slug']
-        tribunaisSum = TribNameSumulaModel.objects.get(slug=tribNameSum_slug)
-        return SumulaModel.objects.filter(tribunaisSum=tribunaisSum)
+        self.tribunaisSum = TribNameSumulaModel.objects.get(slug=self.kwargs['tribNameSum_slug'])
+        return SumulaModel.objects.filter(tribunaisSum=self.tribunaisSum)
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        tribNameSum_slug = self.kwargs['tribNameSum_slug']
-        context['tribunaisSum'] = TribNameSumulaModel.objects.get(slug=tribNameSum_slug)
-        context['tribunaisSums'] = TribNameSumulaModel.objects.all()
-        context['current_app'] = 'app_sumulas'
+        context.update({
+            'tribunaisSum': self.tribunaisSum,
+            'tribunaisSums': TribNameSumulaModel.objects.all(),
+            'siglaTribSumula': SiglaTribSumulasView.objects.all(),
+            'current_app': 'app_sumulas',
+        })
         return context
 
 
@@ -82,16 +110,17 @@ class SiglaTribSumulasView(ListView):
     context_object_name = 'sumulas'
     
     def get_queryset(self):
-        siglaTrib_slug = self.kwargs['siglaTrib_slug']
-        siglaTribSumula = SiglaTribSumulasView.objects.get(slug=siglaTrib_slug)
-        return SumulaModel.objects.filter(siglaTribSumula=siglaTribSumula)
+        self.siglaTribSumula = SiglaTribSumulaModel.objects.get(slug=self.keargs['siglaTrib_slug'])
+        return SumulaModel.objects.filter(siglaTribSumula=self.siglaTribSumula)
     
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        siglaTrb_slug = self.kwargs['siglaTrib_slug']
-        context['siglaTribSumula'] = SiglaTribSumulasView.objects.get(slug=siglaTrib_slug)
-        context['siglaTribSumulas'] = SiglaTribSumulasView.objects.all()
-        context['current_app'] = 'app_sumulas'
+        context.update({
+            'siglaTribSumula': self.siglaTribSumula,
+            'siglaTribSumulas': SiglaTribSumulasView.objects.all(),
+            'tribunaisSums': TribNameSumulaModel.objects.all(),
+            'current_app': 'app_sumulas',
+        })
         return context   
     
 # Classes Create; 

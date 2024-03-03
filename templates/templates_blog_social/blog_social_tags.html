@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block 'blog_tags' %}
+<br>
+<div class="container">
+    <div class="row g-5">
+        <!--Col md 8 -->
+        <div class="col-md-8" id="main-content"> 
+
+            <div class="col-md-12 px-0">
+                <h1>Blog-Social | Tag: {{ tags.name }}</h1>
+                <span>
+                    Nesta página, estão listados os artigos conforme a <strong>tag</strong> selecionada.
+                </span><br><br>
+            </div>
+
+
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+                <!--Bloco -->
+                {% for social in blog %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card h-100"> <!-- Adicionado h-100 para fazer os cards terem a mesma altura -->
+                            {% if social.img_destaque %}
+                            <img src="{{ social.img_destaque.url }}" class="card-img-top" alt="{{ social.title }}">
+                            {% endif %}
+                            <div class="card-body d-flex flex-column"> <!-- Flex para alinhar itens dentro do card -->
+                                <h5 class="card-title">{{ social.title }}</h5>
+                                <p class="card-text">{{ social.meta_description|truncatewords:20 }}</p>
+                                <p class="text-muted mt-auto">
+                                    <a href="{% url 'app_blog_social:blog-social-categories' social.category.slug %}"
+                                        class="card-a-category">
+                                        {{ social.category.name }}
+                                    </a> | {{ social.date_created|date:"d M Y" }}
+                                </p>
+                                <a href="{% url 'app_blog_social:blog-social-single' social.slug %}" class="a-link">Leia mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if is_paginated %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; primeira</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">&laquo; anterior</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">próxima &raquo;</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            {% endif %}
+
+        </div>
+
+{% endblock 'blog_tags' %}

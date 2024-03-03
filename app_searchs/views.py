@@ -10,6 +10,9 @@ import re
 from datetime import datetime
 from django.db.models import Min, Max
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpRequest, HttpResponse
+from django.utils import timezone
+from app_manager .models import PageView
 
 
 def universal_search_view(request):
@@ -114,40 +117,59 @@ def advanced_search_view(request):
         earliest_date = date_range['data_formatada__min']
         latest_date = date_range['data_formatada__max']
         return render(request, 'templates_search/advanced_search_view.html', {'total_records': total_records,'earliest_date': earliest_date,'latest_date': latest_date, 'hide_sidebar': True,})
-
+    
+    
 
 def advanced_results_view(request):
-    #serialized_results = request.session.pop('search_results', [])
-    serialized_results = request.session.get('search_results', [])
+    # Lógica para atualizar a contagem de visualizações
+    page_stj, created = PageView.objects.get_or_create(
+        page_name="Resultado Pesquisa Jurisprudência STJ",
+        defaults={'last_accessed': timezone.now()}
+    )
+    if not created:
+        page_stj.view_count += 1
+        page_stj.last_accessed = timezone.now()
+        page_stj.save()
 
-    results = request.session.get('search_results', [])
-    
-    # Convertendo a string de volta para o objeto date
+    # Processamento dos resultados serializados da sessão
+    serialized_results = request.session.get('search_results', [])
     results = []
     for result_dict in serialized_results:
         result = STJjurisprudenciaModel(**result_dict)
         result.data_formatada = datetime.strptime(result_dict['data_formatada'], '%Y-%m-%d').date()
         results.append(result)
 
-    results_per_page = 20  # ou qualquer outro número que você quiser
+    # Configuração da paginação
+    results_per_page = 20
     paginator = Paginator(results, results_per_page)
-
-    page = request.GET.get('page')
+    page_number = request.GET.get('page')
 
     try:
-        paged_results = paginator.page(page)
+        paged_results = paginator.page(page_number)
     except PageNotAnInteger:
-        # Se a página não for um inteiro, entrega a primeira página.
         paged_results = paginator.page(1)
     except EmptyPage:
-        # Se a página estiver fora do alcance (por exemplo, 9999), entrega a última página de resultados.
         paged_results = paginator.page(paginator.num_pages)
 
-    results = request.session.get('search_results', [])
-    return render(request, 'templates_search/advanced_results_view.html', {'results': results, 'search_performed': True, 'results': paged_results, 'hide_sidebar': True,})
+    # Renderização do template com os resultados paginados
+    return render(request, 'templates_search/advanced_results_view.html', {
+        'results': paged_results,  # Certifique-se de que o template use 'results' para iterar
+        'search_performed': True,
+        'hide_sidebar': True,
+    })
+
 
 
 def sumula_search_view(request):
+    page, created = PageView.objects.get_or_create(
+        page_name="Resultados de Pesquisa Súmulas",
+        defaults={'last_accessed': timezone.now()}
+    )
+    if not created:
+        page.view_count += 1
+        page.last_accessed = timezone.now()
+        page.save()
+        
     if request.method == 'POST':
         form = SumulaSearchForm(request.POST)
         search_performed = True

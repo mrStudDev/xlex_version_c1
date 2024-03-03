@@ -29,3 +29,15 @@ class HomeSite(models.Model):
     def update_views(self, *args, **kwargs):
          self.views = self.views + 1
          super(HomeSite, self).save(*args, **kwargs)
+
+
+class ContactMessagesModel(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=150)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    
+    def __str__(self):
+        return self.subject

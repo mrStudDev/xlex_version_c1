@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block 'title' %}{{ blogSocial.title }}{% endblock 'title' %}    
+
+{% block 'blog_single' %}
+
+<div class="container">
+    <div class="row g-5">
+        <div class="col-md-8" id="main-content">
+            <div class="news-image-container">
+                <img src="{{ object.img_destaque.url }}" class="news-image img-fluid rounded-start" alt="{{object.title}}">
+            </div>
+            <br>
+            <p>Blog-Social: {{object.title}}</p>           
+            <small>Categoria</small>  | <span class="badge bg-dark">{{object.category}}</span> 
+            <small>Pub: {{object.date_created}}</small>
+             <hr>
+
+            <br><br>
+            <h1 style="text-transform: uppercase;">{{object.title}}</h1>
+            <br>
+            <p>{{object.content | safe}}</p>
+            <br>
+            <div class="news-footer">
+                <span class="coracao">&#9829; &#9829; &#9829; &#9829; &#9829;</span>                           
+                <small style="color: rgb(154, 152, 152);">{{ object.author.first_name }} {{ object.author.last_name }}</small>
+                <br>
+                <span style="color: rgb(79, 79, 79);">Obrigado pela leitura!</span>
+
+                <hr class="news-divider">
+
+                <small><strong>Tags:</strong></small>
+                {% for tag in tags %}
+                    <code style="color:gray"> |{{tag.name}}</code>
+                {% endfor %}
+
+                <br>
+                <small><strong>Blog-Social: </strong>{{object.title}}</small><br>
+                <small><strong>Categoria: </strong>{{object.category}}</small><br>
+                <small><strong>Pub: </strong>{{object.date_created}}</small><br>
+                <small><strong>Views: </strong>{{object.views}}</small>
+
+            </div>
+        </div>
+{% endblock 'blog_single' %}

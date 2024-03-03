@@ -7,6 +7,9 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.contrib import messages
 from datetime import datetime
+from django.http import HttpRequest, HttpResponse
+from django.utils import timezone
+from app_manager .models import PageView
 import json
 
 
@@ -23,22 +26,47 @@ class STJjurisprudenciaView(ListView):
         context["hide_sidebar"] = True
         return context
 
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        page, created = PageView.objects.get_or_create(
+            page_name="Lista de Jurisprudências",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed = timezone.now()
+            page.save()
+
+        return super().get(request, *args, **kwargs)
+
+
 class STJjurisprudenciaSingularView(DetailView):
     model = STJjurisprudenciaModel
     template_name = 'templates_jurisprudencias/templates_juris_stj/juris_stj_single.html'
     context_object_name = 'jurisprucencia_STJ'
     
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        self.object = self.get_object()
+        juri_stj_name = self.object.title        
+        self.object.update_views()
+        
+        page, created = PageView.objects.get_or_create(
+            page_name=f"Juris STJ Post: {juri_stj_name}",
+            defaults={'last_accessed': timezone.now()}
+        )
+        if not created:
+            page.view_count += 1
+            page.last_accessed
+            page.save()
+        
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)    
+    
+    
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["hide_sidebar"] = True
+        context['current_app'] = 'app_juris_stj'
         return context
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        # Contagem das Visualizações
-        self.object.update_views() 
-        context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
 
 
 def upload_jurisprudencia_view(request):

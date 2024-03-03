@@ -2,33 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const breadcrumbElement = document.getElementById('breadcrumbs');
     const path = window.location.pathname.split('/').filter(Boolean);
     const nonClickableSegments = [
-        'caso',
-        'disciplina',
-        'ramo-direito',
-        'tags',
-        'post',
-        'categorias',
-        'principios-single',
-        'banca',
-        'universal',
-        'advanced-results',
-        'sumula-search',
-        'searchs',
-        'sumula',
-        'juris-single',
-        'categorias-social',
-        'esfera',
-        'categories',
-        'modelo-single',
-        'sumula-singular',
-        'ramo-direito-doc',
-        'tipo-doc',
-        'tags-docs',
-        'delete-modelo',
-        'blog-post',
-        'tags-blog-social',
-        'principio-single',
-        'principio-ramos',
+
 
     ]; // Lista de segmentos não clicáveis
 
